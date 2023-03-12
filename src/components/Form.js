@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { MdRefresh } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { randomId } from "../utils/Random";
+import InputComponent from "../common/Input";
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -25,7 +26,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .required("ایمیل را وارد کنید")
     .email("فرمت ایمیل صحیح نیست"),
-  confirmRandomValue:Yup.string().required("تصویر کد را وارد کنید")
+  confirmRandomValue: Yup.string().required("تصویر کد را وارد کنید"),
 });
 const FormComponent = () => {
   const [randomNum, setRandomNum] = useState();
@@ -59,88 +60,38 @@ const FormComponent = () => {
           </Link>
           <span>قبلا ثبت نام کردید؟</span>
         </div>
+        <InputComponent
+          name="firstName"
+          label="نام"
+          formik={formik}
+          type="text"
+        />
+        <InputComponent
+          name="lastName"
+          label="نام خانوادگی "
+          formik={formik}
+          type="text"
+        />
+        <InputComponent
+          name="nationalCode"
+          label="کد ملی"
+          formik={formik}
+          type="text"
+        />
+        <InputComponent
+          name="phone"
+          label="شماره تلفن"
+          formik={formik}
+          type="text"
+        />
+        <InputComponent
+          name="email"
+          label="آدرس ایمیل"
+          formik={formik}
+          type="text"
+        />
         <div className="flex flex-col mb-3">
-          <label htmlFor="firstName" className="ml-2 " dir="rtl">
-            نام
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            className="  outline-0  border-2 border-borderColor rounded-md py-2 w-[300px] md:w-[250px] lg:w-[396px] lg:h-[48px] px-3"
-            type="text"
-            name="firstName"
-            {...formik.getFieldProps("firstName")}
-            id="firstName"
-          />
-          {formik.touched.firstName && formik.errors.firstName && (
-            <span className="text-red-400">{formik.errors.firstName}</span>
-          )}
-        </div>
-        <div className="flex flex-col mb-3">
-          <label htmlFor="lastName" className="ml-2" dir="rtl">
-            نام خانوادگی
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            className="  outline-0  border-2 border-borderColor rounded-md py-2 w-[300px] md:w-[250px] lg:w-[396px] lg:h-[48px] px-3"
-            type="text"
-            name="lastName"
-            id="lastName"
-            {...formik.getFieldProps("lastName")}
-          />
-          {formik.touched.lastName && formik.errors.lastName && (
-            <span className="text-red-400">{formik.errors.lastName}</span>
-          )}
-        </div>
-        <div className="flex flex-col mb-3">
-          <label htmlFor="nationalCode" className="ml-2" dir="rtl">
-            کد ملی
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            className="  outline-0  border-2 border-borderColor rounded-md py-2 w-[300px] md:w-[250px] lg:w-[396px] lg:h-[48px] px-3"
-            type="text"
-            name="nationalCode"
-            {...formik.getFieldProps("nationalCode")}
-            id="nationalCode"
-          />
-          {formik.touched.nationalCode && formik.errors.nationalCode && (
-            <span className="text-red-400">{formik.errors.nationalCode}</span>
-          )}
-        </div>
-        <div className="flex flex-col mb-3">
-          <label htmlFor="phone" className="ml-2" dir="rtl">
-            شماره تلفن
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            className="  outline-0  border-2 border-borderColor rounded-md py-2 w-[300px] md:w-[250px] lg:w-[396px] lg:h-[48px] px-3"
-            type="text"
-            name="phone"
-            {...formik.getFieldProps("phone")}
-            id="phone"
-          />
-          {formik.touched.phone && formik.errors.phone && (
-            <span className="text-red-400">{formik.errors.phone}</span>
-          )}
-        </div>
-        <div className="flex flex-col mb-3">
-          <label htmlFor="email" className="ml-2" dir="rtl">
-            آدرس ایمیل
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            className="  outline-0  border-2 border-borderColor rounded-md py-2 w-[300px] md:w-[250px] lg:w-[396px] lg:h-[48px] px-3"
-            type="text"
-            name="email"
-            {...formik.getFieldProps("email")}
-            id="email"
-          />
-          {formik.touched.email && formik.errors.email && (
-            <span className="text-red-400">{formik.errors.email}</span>
-          )}
-        </div>
-        <div className="flex flex-col mb-3">
-          <label htmlFor="company" className="ml-2" dir="rtl">
+          <label htmlFor="company" className="ml-2 text-textcolor" dir="rtl">
             نام شرکت
           </label>
           <input
@@ -159,7 +110,7 @@ const FormComponent = () => {
               onClick={randomHandler}
             />
             <input
-            name="random"
+              name="random"
               type="text"
               value={randomNum}
               className="py-2 px-3 text-lg font-bold "
